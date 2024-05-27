@@ -1,0 +1,54 @@
+<div class="container">
+  <h1 class="title" style="text-align: center">SignUp</h1>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form">
+    <mat-form-field class="form-field">
+      <mat-label>First name</mat-label>
+      <input matInput name="firstName" formControlName="firstName" />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput name="email" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Username</mat-label>
+      <input matInput name="username" formControlName="username" />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        name="password"
+        formControlName="password"
+      />
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>Repeat Password</mat-label>
+      <input
+        matInput
+        type="password"
+        name="confirmPassword"
+        formControlName="confirmPassword"
+      />
+    </mat-form-field>
+    <div class="checkbox-container">
+      <mat-checkbox
+        class="example-margin"
+        name="termsOfUser"
+        formControlName="termsOfUser"
+        color="primary"
+        >I agree to
+        <span style="font-weight: bold"> Terms of User </span>
+      </mat-checkbox>
+    </div>
+    <div class="button-container">
+      <button mat-flat-button color="primary" class="signUp" type="submit">
+        Sign Up
+      </button>
+      <button mat-button color="primary" class="signUp">
+        Sign in
+        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

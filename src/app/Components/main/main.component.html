@@ -1,0 +1,49 @@
+<h1
+  style="
+    text-align: center;
+    margin: 4rem 0rem;
+    font-size: 3rem;
+    font-weight: bold;
+  "
+>
+  Home Page
+</h1>
+
+<main
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  "
+>
+  @for (project of projects; track $index) {
+
+  <mat-card class="example-card" style="margin: 10px">
+    <img
+      mat-card-image
+      [src]="project.imageUrl"
+      alt="Project Image"
+      height="200"
+      width="auto"
+    />
+    <mat-card-content>
+      <h1 style="margin-top: 1rem; text-align: center; font-weight: 400">
+        {{ project.title }}
+      </h1>
+    </mat-card-content>
+    <mat-card-actions
+      style="display: flex; justify-content: flex-end; margin-top: 1rem"
+    >
+      <button
+        mat-button
+        (click)="handleNavigate(project.route)"
+        mat-flat-button
+        color="primary"
+      >
+        Show
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  }
+</main>

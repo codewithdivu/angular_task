@@ -1,0 +1,226 @@
+<main>
+  <h1
+    style="
+      text-align: center;
+      margin-top: 2rem;
+      font-weight: bold;
+      font-size: 2rem;
+    "
+  >
+    Calculator
+  </h1>
+  <div class="cal-wrap">
+    <input
+      type="text"
+      class="cal-display"
+      (input)="handleChangeExpression($event)"
+      [value]="expression"
+    />
+    <input
+      type="text"
+      class="cal-display-sol"
+      (input)="handleChangeResult($event)"
+      [value]="result"
+    />
+    <table class="cal-table">
+      <tr>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('%')"
+          >
+            %
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleClearExpression()"
+          >
+            CE
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleClearAll()"
+          >
+            C
+          </button>
+        </td>
+        <td>
+          <button class="cal-button cal-function butt" (click)="handleBack()">
+            ⌫
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleScientific('dividebyx')"
+          >
+            1/X
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleScientific('square')"
+          >
+            x²
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleScientific('root')"
+          >
+            √x
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('/')"
+          >
+            /
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('7')"
+          >
+            7
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('8')"
+          >
+            8
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('9')"
+          >
+            9
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('*')"
+          >
+            *
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('4')"
+          >
+            4
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('5')"
+          >
+            5
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('6')"
+          >
+            6
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('-')"
+          >
+            -
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('1')"
+          >
+            1
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('2')"
+          >
+            2
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('3')"
+          >
+            3
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('+')"
+          >
+            +
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleScientific('plusminus')"
+          >
+            ±
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('0')"
+          >
+            0
+          </button>
+        </td>
+        <td>
+          <button
+            class="cal-button cal-function butt"
+            (click)="handleCalculate('.')"
+          >
+            .
+          </button>
+        </td>
+        <td>
+          <button class="cal-button cal-function butt" (click)="handleSolve()">
+            =
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</main>
