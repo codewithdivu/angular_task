@@ -26,6 +26,12 @@ export class MainComponent {
         'https://teachershq.com/wp-content/uploads/2017/04/government_forms.png',
       route: 'userform',
     },
+    {
+      title: 'To-Do List',
+      imageUrl:
+        'https://cdn-aicin.nitrocdn.com/HIAjYmsdLpRQdKpIMJLXFmZsSAYnEnkl/assets/images/optimized/rev-1e48096/www.amitree.com/wp-content/uploads/2021/08/the-pros-and-cons-of-paper-to-do-lists.jpeg',
+      route: 'todo',
+    },
   ];
 
   handleNavigate = (val: string) => {

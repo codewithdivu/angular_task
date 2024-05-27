@@ -1,0 +1,43 @@
+<main>
+  <div class="container-fluid" id="container">
+    <div id="ll">
+      <h1>To Do List</h1>
+      <div id="todo-input" style="margin-top: 1.5rem">
+        <form>
+          <div class="row g-3">
+            <div class="col-auto">
+              <input
+                type="text"
+                class="form-control"
+                id="input"
+                placeholder="Write something here"
+                [value]="todo"
+                (input)="handleChangeTodo($event)"
+              />
+            </div>
+            <div class="col-auto">
+              <button
+                #add
+                id="btn"
+                class="btn btn-primary mb-3"
+                (click)="addToDo($event)"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div id="items">
+        <ul id="myul">
+          <app-todo-item
+            *ngFor="let todo of todoList"
+            [todo]="todo"
+            (deleteTodo)="handleDeleteTodo($event)"
+          ></app-todo-item>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+<router-outlet />

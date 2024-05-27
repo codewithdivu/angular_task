@@ -1,0 +1,31 @@
+#container {
+  background-color: #d8e3ff;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#ll {
+  background-color: white;
+  padding: 2rem;
+}
+
+li {
+  list-style: none;
+  margin-left: 50px;
+}
+
+#input {
+  width: 537px;
+}
+
+#content {
+  width: 650px;
+  display: flex;
+  justify-content: space-between;
+}
+h1 {
+  color: #3f3797;
+}

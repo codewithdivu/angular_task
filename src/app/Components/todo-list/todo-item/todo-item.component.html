@@ -1,0 +1,11 @@
+<div class="d-flex align-items-center" id="content">
+  <li>{{ todo.todo }}</li>
+  <div>
+    <button id="edit" class="btn btn-success m-2" (click)="editTodo(todo.id)">
+      Edit
+    </button>
+    <button id="delte" class="btn btn-danger m-2" (click)="onDelete()">
+      X
+    </button>
+  </div>
+</div>
