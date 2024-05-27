@@ -24,6 +24,10 @@ export class CalculatorComponent {
   handleCalculate = (val: string) => {
     const isEmpty = this.expression == '';
 
+    if (this.expression.includes('.') && val == '.') {
+      return;
+    }
+
     if (this.expression == '-') {
       if (!['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(val)) {
         return;
