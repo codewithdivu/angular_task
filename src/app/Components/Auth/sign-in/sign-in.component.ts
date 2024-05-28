@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NavigationService } from '../../../Services/Navigation.Service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-in',
@@ -40,7 +41,8 @@ export class SignInComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private navigationService: NavigationService
+    private navigationService: NavigationService,
+    private http: HttpClient
   ) {
     this.signinForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -50,7 +52,17 @@ export class SignInComponent {
 
   onSubmit() {
     if (this.signinForm.valid) {
-      console.log('formData', this.signinForm.value);
+      this.http
+        .post('http://localhost:8000/api/v1/auth/login', this.signinForm.value)
+        .subscribe((res: any) => {
+          if (res.success) {
+            localStorage.setItem('myAppToken', res.accessToken);
+            localStorage.setItem('myAppAuth', JSON.stringify(res.data));
+            this.navigateTo('dashboard');
+          } else {
+            alert(`error ${res.message}`);
+          }
+        });
     } else {
       this.signinForm.markAllAsTouched();
     }

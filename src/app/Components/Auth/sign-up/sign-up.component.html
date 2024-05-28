@@ -2,10 +2,10 @@
   <h1 class="title" style="text-align: center">SignUp</h1>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="form">
     <mat-form-field class="form-field">
-      <mat-label>First name</mat-label>
-      <input matInput name="firstName" formControlName="firstName" />
-      <mat-error *ngIf="signupForm.get('firstName')!.hasError('required')">
-        {{ validationMessages.firstName.required }}
+      <mat-label>Name</mat-label>
+      <input matInput name="name" formControlName="name" />
+      <mat-error *ngIf="signupForm.get('name')!.hasError('required')">
+        {{ validationMessages.name.required }}
       </mat-error>
     </mat-form-field>
 
@@ -82,7 +82,6 @@
         class="signUp"
         type="button"
         (click)="navigateTo('auth/signin')"
-
       >
         Sign in
         <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>

@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import Validation from '../../../../utils/Validation';
 import { Router } from '@angular/router';
 import { NavigationService } from '../../../Services/Navigation.Service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sign-up',
@@ -31,7 +32,7 @@ export class SignUpComponent {
   signupForm: FormGroup;
 
   validationMessages = {
-    firstName: {
+    name: {
       required: 'First name is required.',
     },
     email: {
@@ -52,11 +53,12 @@ export class SignUpComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private navigationService: NavigationService
+    private navigationService: NavigationService,
+    private http: HttpClient
   ) {
     this.signupForm = this.formBuilder.group(
       {
-        firstName: ['', Validators.required],
+        name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         username: ['', Validators.required],
         password: ['', Validators.required],
@@ -71,7 +73,23 @@ export class SignUpComponent {
 
   onSubmit() {
     if (this.signupForm.valid) {
-      console.log('formData', this.signupForm.value);
+      const { email, password, username, name } = this.signupForm.value;
+
+      this.http
+        .post('http://localhost:8000/api/v1/auth/register', {
+          email: email,
+          password: password,
+          username: username,
+          name: name,
+        })
+        .subscribe((res: any) => {
+          if (res.success) {
+            console.log('res', res);
+            this.navigationService.handleNavigate('auth/signin');
+          } else {
+            alert(`error : ${res.message}`);
+          }
+        });
     } else {
       this.signupForm.markAllAsTouched();
     }

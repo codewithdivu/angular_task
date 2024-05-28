@@ -7,16 +7,23 @@ import { SignInComponent } from './Components/Auth/sign-in/sign-in.component';
 import { AppComponent } from './app.component';
 import { DashboardLayoutComponent } from './Layouts/dashboard-layout/dashboard-layout.component';
 import { AuthLayoutComponent } from './Layouts/auth-layout/auth-layout.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: '/dashboard',
+  //   pathMatch: 'full',
+  // },
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/auth/signin',
     pathMatch: 'full',
   },
   {
     path: 'dashboard',
     component: DashboardLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
