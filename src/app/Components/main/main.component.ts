@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
+import { NavigationService } from '../../Services/Navigation.Service';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +12,10 @@ import { Router } from '@angular/router';
   styleUrl: './main.component.css',
 })
 export class MainComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private navigationService: NavigationService
+  ) {}
 
   projects = [
     {
@@ -21,12 +25,6 @@ export class MainComponent {
       route: 'calculator',
     },
     {
-      title: 'User Registration Form',
-      imageUrl:
-        'https://teachershq.com/wp-content/uploads/2017/04/government_forms.png',
-      route: 'userform',
-    },
-    {
       title: 'To-Do List',
       imageUrl:
         'https://cdn-aicin.nitrocdn.com/HIAjYmsdLpRQdKpIMJLXFmZsSAYnEnkl/assets/images/optimized/rev-1e48096/www.amitree.com/wp-content/uploads/2021/08/the-pros-and-cons-of-paper-to-do-lists.jpeg',
@@ -34,7 +32,7 @@ export class MainComponent {
     },
   ];
 
-  handleNavigate = (val: string) => {
-    this.router.navigate([`/${val}`]);
-  };
+  navigateTo(val: string) {
+    this.navigationService.handleNavigate(val);
+  }
 }

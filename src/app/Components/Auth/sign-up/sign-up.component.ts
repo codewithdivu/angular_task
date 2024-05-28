@@ -5,13 +5,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import Validation from '../../../utils/Validation';
+import Validation from '../../../../utils/Validation';
+import { Router } from '@angular/router';
+import { NavigationService } from '../../../Services/Navigation.Service';
 
 @Component({
-  selector: 'app-user-form',
+  selector: 'app-sign-up',
   standalone: true,
   imports: [
     CommonModule,
@@ -23,10 +24,10 @@ import Validation from '../../../utils/Validation';
     MatButtonModule,
     MatIconModule,
   ],
-  templateUrl: './user-form.component.html',
-  styleUrl: './user-form.component.css',
+  templateUrl: './sign-up.component.html',
+  styleUrl: './sign-up.component.css',
 })
-export class UserFormComponent {
+export class SignUpComponent {
   signupForm: FormGroup;
 
   validationMessages = {
@@ -49,7 +50,10 @@ export class UserFormComponent {
     },
   };
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private navigationService: NavigationService
+  ) {
     this.signupForm = this.formBuilder.group(
       {
         firstName: ['', Validators.required],
@@ -71,5 +75,9 @@ export class UserFormComponent {
     } else {
       this.signupForm.markAllAsTouched();
     }
+  }
+
+  navigateTo(val: string) {
+    this.navigationService.handleNavigate(val);
   }
 }
