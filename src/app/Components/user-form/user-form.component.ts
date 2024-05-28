@@ -67,7 +67,7 @@ export class UserFormComponent {
 
   onSubmit() {
     if (this.signupForm.valid) {
-      console.log(this.signupForm.value);
+      console.log('formData', this.signupForm.value);
     } else {
       this.signupForm.markAllAsTouched();
     }
