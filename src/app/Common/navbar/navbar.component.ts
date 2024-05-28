@@ -12,7 +12,14 @@ import { NavigationService } from '../../Services/Navigation.Service';
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  constructor(private navigationService: NavigationService) {}
+  user: any = {};
+
+  constructor(private navigationService: NavigationService) {
+    if (localStorage.getItem('myAppAuth')) {
+      const user: any = JSON.parse(localStorage.getItem('myAppAuth')!);
+      this.user = user;
+    }
+  }
 
   handleLogout() {
     localStorage.removeItem('myAppToken');

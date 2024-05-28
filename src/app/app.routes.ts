@@ -10,11 +10,6 @@ import { AuthLayoutComponent } from './Layouts/auth-layout/auth-layout.component
 import { AuthGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
-  // {
-  //   path: '',
-  //   redirectTo: '/dashboard',
-  //   pathMatch: 'full',
-  // },
   {
     path: '',
     redirectTo: '/auth/signin',
