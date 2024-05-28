@@ -22,13 +22,13 @@ export class MainComponent {
       title: 'Calculator',
       imageUrl:
         'https://d3mvlb3hz2g78.cloudfront.net/wp-content/uploads/2015/02/thumb_720_450_1411_f.jpg',
-      route: 'calculator',
+      route: 'dashboard/calculator',
     },
     {
       title: 'To-Do List',
       imageUrl:
         'https://cdn-aicin.nitrocdn.com/HIAjYmsdLpRQdKpIMJLXFmZsSAYnEnkl/assets/images/optimized/rev-1e48096/www.amitree.com/wp-content/uploads/2021/08/the-pros-and-cons-of-paper-to-do-lists.jpeg',
-      route: 'todo',
+      route: 'dashboard/todo',
     },
   ];
 
