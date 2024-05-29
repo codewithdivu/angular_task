@@ -29,7 +29,18 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './sign-up.component.css',
 })
 export class SignUpComponent {
+  hide1 = true;
+  hide2 = true;
   signupForm: FormGroup;
+
+  eyeClick(event: MouseEvent, val: string) {
+    if (val === 'hide1') {
+      this.hide1 = !this.hide1;
+    } else {
+      this.hide2 = !this.hide2;
+    }
+    event.stopPropagation();
+  }
 
   validationMessages = {
     name: {

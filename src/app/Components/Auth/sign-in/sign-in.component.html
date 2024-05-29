@@ -1,44 +1,71 @@
-<div class="container">
-  <h1 class="title" style="text-align: center">SignIn</h1>
-  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="form">
-    <mat-form-field class="form-field">
-      <mat-label>Email</mat-label>
-      <input matInput name="email" formControlName="email" />
-      <mat-error *ngIf="signinForm.get('email')!.hasError('required')">
-        {{ validationMessages.email.required }}
-      </mat-error>
-      <mat-error *ngIf="signinForm.get('email')!.hasError('email')">
-        {{ validationMessages.email.email }}
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field class="form-field">
-      <mat-label>Password</mat-label>
-      <input
-        matInput
-        type="password"
-        name="password"
-        formControlName="password"
-      />
-      <mat-error *ngIf="signinForm.get('password')!.hasError('required')">
-        {{ validationMessages.password.required }}
-      </mat-error>
-    </mat-form-field>
-
-    <div class="button-container">
-      <button mat-flat-button color="primary" class="signUp" type="submit">
-        Sign In
-      </button>
-      <button
-        mat-button
-        color="primary"
-        class="signUp"
-        type="button"
-        (click)="navigateTo('auth/signup')"
-      >
-        Sign Up
-        <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
-      </button>
-    </div>
-  </form>
+@if (loaderService.isLoading) {
+<div
+  style="
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+  "
+>
+  <mat-spinner></mat-spinner>
 </div>
+}@else {
+<div class="signincontainer">
+  <div class="container">
+    <h1 class="title" style="text-align: center">SignIn</h1>
+    <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" class="form">
+      <mat-form-field class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput name="email" formControlName="email" />
+        <mat-error *ngIf="signinForm.get('email')!.hasError('required')">
+          {{ validationMessages.email.required }}
+        </mat-error>
+        <mat-error *ngIf="signinForm.get('email')!.hasError('email')">
+          {{ validationMessages.email.email }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-field">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          name="password"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="eyeClick($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+          type="button"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+        <mat-error *ngIf="signinForm.get('password')!.hasError('required')">
+          {{ validationMessages.password.required }}
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-container">
+        <button mat-flat-button color="primary" class="signUp" type="submit">
+          Sign In
+        </button>
+        <button
+          mat-button
+          color="primary"
+          class="signUp"
+          type="button"
+          (click)="navigateTo('auth/signup')"
+        >
+          Sign Up
+          <mat-icon iconPositionEnd>arrow_right_alt</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+}
