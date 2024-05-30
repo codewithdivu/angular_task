@@ -7,10 +7,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import Validation from '../../../../utils/Validation';
+import Validation from '../../../utils/Validation';
 import { Router } from '@angular/router';
-import { NavigationService } from '../../../Services/Navigation.Service';
-import { HttpClient } from '@angular/common/http';
+import { NavigationService } from '../../Services/Navigation.Service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-up',
@@ -32,6 +37,18 @@ export class SignUpComponent {
   hide1 = true;
   hide2 = true;
   signupForm: FormGroup;
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  openSnackBar(msg: string, color: string) {
+    this._snackBar.open(msg, '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 3 * 1000,
+      panelClass: [color],
+    });
+  }
 
   eyeClick(event: MouseEvent, val: string) {
     if (val === 'hide1') {
@@ -65,7 +82,8 @@ export class SignUpComponent {
   constructor(
     private formBuilder: FormBuilder,
     private navigationService: NavigationService,
-    private http: HttpClient
+    private http: HttpClient,
+    private _snackBar: MatSnackBar
   ) {
     this.signupForm = this.formBuilder.group(
       {
@@ -85,7 +103,6 @@ export class SignUpComponent {
   onSubmit() {
     if (this.signupForm.valid) {
       const { email, password, username, name } = this.signupForm.value;
-
       this.http
         .post('http://localhost:8000/api/v1/auth/register', {
           email: email,
@@ -93,14 +110,21 @@ export class SignUpComponent {
           username: username,
           name: name,
         })
-        .subscribe((res: any) => {
-          if (res.success) {
-            console.log('res', res);
-            this.navigationService.handleNavigate('auth/signin');
-          } else {
-            alert(`error : ${res.message}`);
+        .subscribe(
+          (res: any) => {
+            if (res.success) {
+              this.openSnackBar(res.msg, 'success-snackbar');
+              this.navigationService.handleNavigate('auth/signin');
+            } else {
+              this.openSnackBar(res.msg, 'error-snackbar');
+              alert(`error : ${res.message}`);
+            }
+          },
+          (error: HttpErrorResponse) => {
+            console.log('error', error);
+            this.openSnackBar(error.error.msg, 'error-snackbar');
           }
-        });
+        );
     } else {
       this.signupForm.markAllAsTouched();
     }

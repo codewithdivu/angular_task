@@ -2,9 +2,8 @@ import { Routes } from '@angular/router';
 import { MainComponent } from './Components/main/main.component';
 import { CalculatorComponent } from './Components/calculator/calculator.component';
 import { TodoListComponent } from './Components/todo-list/todo-list.component';
-import { SignUpComponent } from './Components/Auth/sign-up/sign-up.component';
-import { SignInComponent } from './Components/Auth/sign-in/sign-in.component';
-import { AppComponent } from './app.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { DashboardLayoutComponent } from './Layouts/dashboard-layout/dashboard-layout.component';
 import { AuthLayoutComponent } from './Layouts/auth-layout/auth-layout.component';
 import { AuthGuard } from './Guards/auth.guard';
@@ -54,4 +53,8 @@ export const routes: Routes = [
       },
     ],
   },
+  // {
+  //   path: 'auth',
+  //   loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  // },
 ];
