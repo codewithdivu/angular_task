@@ -16,6 +16,9 @@ export class TodoListComponent {
 
   constructor() {
     console.log(this.todoList);
+    if (localStorage.getItem('todo')) {
+      this.todoList = JSON.parse(localStorage.getItem('todo')!);
+    }
   }
 
   handleChangeTodo(e: Event) {
@@ -31,12 +34,14 @@ export class TodoListComponent {
       return;
     }
     this.todoList.push({ id: Date.now(), todo: this.todo });
+    localStorage.setItem('todo', JSON.stringify(this.todoList));
     this.todo = '';
   };
 
   handleDeleteTodo(id: number) {
     if (confirm('Do you really want to delete this task ?')) {
       this.todoList = this.todoList.filter((todo) => todo.id !== id);
+      localStorage.setItem('todo', JSON.stringify(this.todoList));
       return;
     } else {
       return;
