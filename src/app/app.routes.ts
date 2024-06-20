@@ -7,6 +7,10 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { DashboardLayoutComponent } from './Layouts/dashboard-layout/dashboard-layout.component';
 import { AuthLayoutComponent } from './Layouts/auth-layout/auth-layout.component';
 import { AuthGuard } from './Guards/auth.guard';
+import { ProductComponent } from './Components/product/product.component';
+import { CreateComponent } from './Components/product/create/create.component';
+import { ViewComponent } from './Components/product/view/view.component';
+import { ListComponent } from './Components/product/list/list.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +38,33 @@ export const routes: Routes = [
         path: 'todo',
         component: TodoListComponent,
         title: 'ToDo List',
+      },
+      {
+        path: 'product',
+        component: ProductComponent,
+        children: [
+          {
+            path: '',
+            component: ListComponent,
+            pathMatch: 'full',
+            title: 'Products',
+          },
+          {
+            path: 'create',
+            component: CreateComponent,
+            title: 'Create Product',
+          },
+          {
+            path: 'view/:id',
+            component: CreateComponent,
+            title: 'View Product',
+          },
+          {
+            path: 'edit/:id',
+            component: CreateComponent,
+            title: 'View Product',
+          },
+        ],
       },
     ],
   },

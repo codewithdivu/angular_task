@@ -104,7 +104,7 @@ export class SignUpComponent {
     if (this.signupForm.valid) {
       const { email, password, username, name } = this.signupForm.value;
       this.http
-        .post('http://localhost:8000/api/v1/auth/register', {
+        .post('http://localhost:8888/api/v1/auth/register', {
           email: email,
           password: password,
           username: username,

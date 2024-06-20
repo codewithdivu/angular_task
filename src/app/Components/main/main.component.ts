@@ -30,6 +30,11 @@ export class MainComponent {
         'https://cdn-aicin.nitrocdn.com/HIAjYmsdLpRQdKpIMJLXFmZsSAYnEnkl/assets/images/optimized/rev-1e48096/www.amitree.com/wp-content/uploads/2021/08/the-pros-and-cons-of-paper-to-do-lists.jpeg',
       route: 'dashboard/todo',
     },
+    {
+      title: 'Products',
+      imageUrl: 'http://pragmaticscrum.info/wp-content/uploads/2016/06/t1.jpg',
+      route: 'dashboard/product',
+    },
   ];
 
   navigateTo(val: string) {

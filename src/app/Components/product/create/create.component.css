@@ -1,0 +1,22 @@
+.container {
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-field {
+  margin-bottom: 15px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+mat-form-field {
+  margin-right: 12px;
+}

@@ -1,0 +1,69 @@
+<div style="display: flex; flex-direction: row-reverse">
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="navigateTo('/dashboard/product/create')"
+  >
+    Create
+  </button>
+</div>
+<main class="products">
+  @for (product of products; track $index) {
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ product.description }}</p>
+      <p><strong>Price:</strong> ${{ product.price }}</p>
+      <p><strong>In Stock:</strong> {{ product.inStock ? "Yes" : "No" }}</p>
+      <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+      <p
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 1rem;
+        "
+      >
+        <strong>Tags:</strong>
+        <mat-chip-set aria-label="Fish selection">
+          @for (tag of product.tags; track tag) {
+          <mat-chip>{{ tag }}</mat-chip>
+          }
+        </mat-chip-set>
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-button
+        color="primary"
+        [routerLink]="['/dashboard/product/view', product._id]"
+      >
+        View
+      </button>
+      <button
+        mat-button
+        color="accent"
+        [routerLink]="['/dashboard/product/edit', product._id]"
+      >
+        Edit
+      </button>
+      <button
+        mat-button
+        color="warn"
+        (click)="handleDeleteProduct(product._id)"
+      >
+        Delete
+      </button>
+    </mat-card-actions>
+    <mat-card-footer>
+      <small>Created at: {{ product.createdAt }}</small>
+      <br />
+      <small>Updated at: {{ product.updatedAt }}</small>
+    </mat-card-footer>
+  </mat-card>
+
+  }
+</main>

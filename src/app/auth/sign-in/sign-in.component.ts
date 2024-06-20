@@ -21,14 +21,14 @@ import {
   selector: 'app-sign-in',
   standalone: true,
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatCheckboxModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
     MatButtonModule,
-    MatIconModule,
     MatProgressSpinnerModule,
   ],
   templateUrl: './sign-in.component.html',
@@ -83,7 +83,7 @@ export class SignInComponent {
       if (this.signinForm.valid) {
         this.http
           .post(
-            'http://localhost:8000/api/v1/auth/login',
+            'http://localhost:8888/api/v1/auth/login',
             this.signinForm.value
           )
           .subscribe(
