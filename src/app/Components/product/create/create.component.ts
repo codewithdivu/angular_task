@@ -41,7 +41,6 @@ import { ActivatedRoute, UrlSegment } from '@angular/router';
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    // CommonModule,
     MatButtonModule,
     MatProgressSpinnerModule,
     MatChipsModule,
@@ -153,25 +152,47 @@ export class CreateComponent {
         `Bearer ${this.token}`
       );
 
-      this.http
-        .post(
-          'http://localhost:8888/api/v1/product/create',
-          {
-            ...this.productForm.value,
-          },
-          {
-            headers,
-          }
-        )
-        .subscribe(
-          (res: any) => {
-            console.log('res', res);
-            this.navigateTo('/dashboard/product');
-          },
-          (error: HttpErrorResponse) => {
-            console.log('error', error);
-          }
-        );
+      if (this.isEditMode) {
+        this.http
+          .patch(
+            `http://localhost:8888/api/v1/product/${this.productId}`,
+            {
+              ...this.productForm.value,
+            },
+            {
+              headers,
+            }
+          )
+          .subscribe(
+            (res: any) => {
+              console.log('res', res);
+              this.navigateTo('/dashboard/product');
+            },
+            (error: HttpErrorResponse) => {
+              console.log('error', error);
+            }
+          );
+      } else {
+        this.http
+          .post(
+            'http://localhost:8888/api/v1/product/create',
+            {
+              ...this.productForm.value,
+            },
+            {
+              headers,
+            }
+          )
+          .subscribe(
+            (res: any) => {
+              console.log('res', res);
+              this.navigateTo('/dashboard/product');
+            },
+            (error: HttpErrorResponse) => {
+              console.log('error', error);
+            }
+          );
+      }
 
       console.log('submitted...', this.productForm.value);
     } else {

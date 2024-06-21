@@ -67,8 +67,8 @@ export class SignInComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private navigationService: NavigationService,
     private http: HttpClient,
+    private navigationService: NavigationService,
     public loaderService: LoaderService,
     private _snackBar: MatSnackBar
   ) {

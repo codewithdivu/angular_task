@@ -1,5 +1,7 @@
 <div class="container">
-  <h1 class="title" style="text-align: center">Product Creation</h1>
+  <h1 class="title" style="text-align: center">
+    Product {{ isEditMode ? "Edition" : "Creation" }}
+  </h1>
   <form
     class="example-form form"
     [formGroup]="productForm"
@@ -68,6 +70,7 @@
           [editable]="true"
           (edited)="editTag(tag, $any($event))"
           [aria-description]="'press enter to edit ' + tag"
+          [value]="tag"
         >
           {{ tag }}
           <button matChipRemove [attr.aria-label]="'remove ' + tag">
@@ -87,7 +90,7 @@
 
     <div class="form-field">
       <button mat-raised-button color="primary" type="submit">
-        Create Product
+        {{ isEditMode ? "Edit Product" : "Create Product" }}
       </button>
     </div>
   </form>
